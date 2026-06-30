@@ -24,7 +24,7 @@
     </properties>
 
     <modules>
-        <module>event-driven-rabbitMQ</module>
+        <module>event-driven-rabbitmq</module>
     </modules>
 
     <dependencyManagement>
