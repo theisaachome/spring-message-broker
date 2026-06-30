@@ -1,0 +1,32 @@
+### Test Order API - Place Order
+POST http://localhost:8082/api/v1/orders
+Content-Type: application/json
+
+{
+  "orderId": "ORD-001",
+  "orderName": "Laptop",
+  "quantity": 1,
+  "price": 999.99
+}
+
+### Test Order API - Place Mouse Order
+POST http://localhost:8082/api/v1/orders
+Content-Type: application/json
+
+{
+  "orderId": "ORD-002",
+  "orderName": "Mouse",
+  "quantity": 2,
+  "price": 29.99
+}
+
+### Test Order API - Place Keyboard Order
+POST http://localhost:8082/api/v1/orders
+Content-Type: application/json
+
+{
+  "orderId": "ORD-003",
+  "orderName": "Keyboard",
+  "quantity": 1,
+  "price": 79.99
+}

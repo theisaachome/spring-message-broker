@@ -1,0 +1,59 @@
+##version: '3.8'
+#
+##  docker pull rabbitmq:management-alpine
+#services:
+#  rabbitmq:
+#    image: rabbitmq:management-alpine
+#    ports:
+#      - "5672:5672"
+#      - "15672:15672"
+#    volumes:
+#      - rabbitmq_data:/var/lib/rabbitmq
+#
+##  app:
+##    image: demo-app
+##    build:
+##      context: .
+##      dockerfile: Dockerfile
+##    ports:
+##      - "8080:8080"
+#    environment:
+#      SPRING_RABBITMQ_HOST: rabbitmq
+#      SPRING_RABBITMQ_PORT: 5672
+#      SPRING_RABBITMQ_USERNAME: guest
+#      SPRING_RABBITMQ_PASSWORD: guest
+#    depends_on:
+#      - rabbitmq
+#
+#volumes:
+#  rabbitmq_data:
+
+services:
+  rabbitmq:
+    image: rabbitmq:latest
+    container_name: rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+    configs:
+      - source: rabbitmq-plugins
+        target: /etc/rabbitmq/enabled_plugins
+    volumes:
+      - rabbitmq-lib:/var/lib/rabbitmq/
+      - rabbitmq-log:/var/log/rabbitmq
+
+configs:
+  rabbitmq-plugins:
+    content: "[rabbitmq_management]."
+
+volumes:
+  rabbitmq-lib:
+    driver: local
+  rabbitmq-log:
+    driver: local
